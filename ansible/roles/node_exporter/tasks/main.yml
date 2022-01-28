@@ -1,0 +1,46 @@
+---
+# tasks file for node_exporter: in the end point to http://xxx.xxx.xxx.xx:9100
+
+- name: "update apt sources"
+  apt: 
+    update_cache: yes
+    state: latest
+  become: yes
+
+- name: "create Node Exporter directory"
+  file: 
+    path: "{{ ne_install_dir }}"
+    state: directory
+  become: yes
+
+- name: "Install Node Exporter"
+  shell: curl -L {{ git_repo }} -o ~/{{ ne_targz_file }}
+  args:
+    chdir: ~/
+  become: yes
+
+- name: "Extract Node Exporter archive"
+  shell: tar xf ~/{{ ne_targz_file }} --strip-components 1
+  args:
+    chdir:
+      "{{ ne_install_dir }}"
+  become: yes
+
+- name: "make Node Exporter executable"
+  file:
+    path: "{{ ne_install_dir }}/node_exporter"
+    mode: u+x
+  become: yes
+
+- name: "delete Node Exporter archiver"
+  file: 
+    path: ~/{{ ne_targz_file }}
+    state: absent 
+  become: yes
+
+- name: "run Node Exporter"
+  shell: "nohup {{ ne_install_dir }}/node_exporter &"
+
+
+
+

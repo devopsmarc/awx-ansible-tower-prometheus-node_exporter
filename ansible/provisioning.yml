@@ -1,0 +1,10 @@
+---
+
+- hosts: '161.35.183.49'
+  roles:
+    - mysql
+    - node_exporter
+
+- hosts: awx    
+  roles:
+    - awx_operator

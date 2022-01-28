@@ -1,0 +1,11 @@
+---
+
+- hosts: awx
+  gather_facts: yes
+  tasks:
+  - name: "Create empty file"
+    file:
+      path: "/tmp/validate_provisioning_test"
+      state: touch
+
+# make sure to test with: ansible all -m command -a "ls /tmp" -i hosts

@@ -1,0 +1,25 @@
+---
+# tasks file for mysql system
+
+- name: "update apt sources"
+  apt: 
+    update_cache: yes
+    state: latest
+  become: yes
+
+- name: "install mysql"
+  apt: 
+    pkg:
+      - 'nginx'
+      - 'php-fpm'
+      - 'mysql-server'
+      - 'python3-mysqldb'
+      - 'vim' 
+      - 'curl'
+      - 'tmux'
+      - 'git'
+      - 'tar'
+      - 'tree'
+    update_cache: yes
+    state: latest
+  become: yes 
