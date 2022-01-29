@@ -1,6 +1,6 @@
 ---
 
-- hosts: '161.35.183.49'
+- hosts: all
   gather_facts: yes
   tasks:
   - name: "Create empty file"
