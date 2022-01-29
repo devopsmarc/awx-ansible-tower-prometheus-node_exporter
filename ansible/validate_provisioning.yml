@@ -1,6 +1,6 @@
 ---
 
-- hosts: awx
+- hosts: '161.35.183.49'
   gather_facts: yes
   tasks:
   - name: "Create empty file"
